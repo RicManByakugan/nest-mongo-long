@@ -1,28 +1,17 @@
-import { Type } from 'class-transformer';
 import {
-  IsBoolean,
   IsEmail,
   IsNotEmpty,
   IsNumber,
   IsOptional,
   IsString,
 } from 'class-validator';
+import { CreateUserSettingsDto } from './create.user.dto';
+import { Type } from 'class-transformer';
 
-export class CreateUserSettingsDto {
-  @IsBoolean()
-  @IsOptional()
-  darkMode?: boolean;
+export class ResponseUserDto {
+  @IsString()
+  _id: string;
 
-  @IsOptional()
-  @IsBoolean()
-  notifications?: boolean;
-
-  @IsOptional()
-  @IsBoolean()
-  compactMode?: boolean;
-}
-
-export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   name: string;
@@ -44,4 +33,9 @@ export class CreateUserDto {
   @IsOptional()
   @Type(() => CreateUserSettingsDto)
   settings?: CreateUserSettingsDto;
+}
+
+export class ResponseUserSettings extends CreateUserSettingsDto {
+  @IsString()
+  _id: string;
 }
